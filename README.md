@@ -1,4 +1,4 @@
-# Heroku Files for Vehicle Sales Price Reccomender App
+#Vehicle Sales Price Reccomender App
 
 This repository is for hosting the files used to build the [Heroku web app](https://recommend-vehicle-price.herokuapp.com/) based on [the analysis and models built on a vehicle sales dataset](https://github.com/MichaelBryantDS/vehicle-price-rec). An image of the front-end is displayed in Figure 1. Below you will find an overview of the code and files.
 
