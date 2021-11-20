@@ -1,0 +1,128 @@
+ <!doctype html>
+ <html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Sales Price Recommender</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}?v=68">
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <a style="text-decoration:none" href="/">
+    <h1 class='heading_font'>Vehicle Sales Price Recommender</h1>
+    </a>
+</div>
+
+
+
+<div class="ml-container">
+         <form action="{{ url_for('predict')}}" method="post">
+         
+         
+                <select name="cn" id="cars" required="required">
+                <option selected>Select vehicle</option>
+                  {% for x in ['800', 'Activa 3G', 'Activa 4G', 'Alto 800', 'Alto K10', 'Amaze',
+                   'Bajaj  Ct 100', 'Bajaj Avenger 150', 'Bajaj Avenger 150 Street',
+                   'Bajaj Avenger 220', 'Bajaj Avenger 220 Dtsi',
+                   'Bajaj Avenger Street 220', 'Bajaj Discover 100',
+                   'Bajaj Discover 125', 'Bajaj Dominar 400', 'Bajaj Pulsar  Ns 200',
+                   'Bajaj Pulsar 135 Ls', 'Bajaj Pulsar 150', 'Bajaj Pulsar 220 F',
+                   'Bajaj Pulsar Ns 200', 'Bajaj Pulsar Rs200', 'Baleno', 'Brio',
+                   'Camry', 'Ciaz', 'City', 'Corolla', 'Corolla Altis', 'Creta',
+                   'Dzire', 'Elantra', 'Eon', 'Ertiga', 'Etios Cross', 'Etios G',
+                   'Etios Gd', 'Etios Liva', 'Fortuner', 'Grand I10',
+                   'Hero  Cbz Xtreme', 'Hero  Ignitor Disc', 'Hero Extreme',
+                   'Hero Glamour', 'Hero Honda Cbz Extreme', 'Hero Honda Passion Pro',
+                   'Hero Hunk', 'Hero Passion Pro', 'Hero Passion X Pro',
+                   'Hero Splender Ismart', 'Hero Splender Plus',
+                   'Hero Super Splendor', 'Honda Activa 125', 'Honda Activa 4G',
+                   'Honda Cb Hornet 160R', 'Honda Cb Shine', 'Honda Cb Trigger',
+                   'Honda Cb Twister', 'Honda Cb Unicorn', 'Honda Cbr 150',
+                   'Honda Dream Yuga ', 'Honda Karizma', 'Hyosung Gt250R', 'I10',
+                   'I20', 'Ignis', 'Innova', 'Jazz', 'Ktm 390 Duke ', 'Ktm Rc200',
+                   'Ktm Rc390', 'Land Cruiser', 'Mahindra Mojo Xt300', 'Omni', 'Ritz',
+                   'Royal Enfield Bullet 350', 'Royal Enfield Classic 350',
+                   'Royal Enfield Classic 500', 'Royal Enfield Thunder 350',
+                   'Royal Enfield Thunder 500', 'S Cross', 'Suzuki Access 125',
+                   'Swift', 'Sx4', 'Tvs Apache Rtr 160', 'Tvs Apache Rtr 180',
+                   'Tvs Jupyter', 'Tvs Sport ', 'Tvs Wego', 'Um Renegade Mojave',
+                   'Verna', 'Vitara Brezza', 'Wagon R', 'Xcent', 'Yamaha Fazer ',
+                   'Yamaha Fz  V 2.0', 'Yamaha Fz 16', 'Yamaha Fz S ',
+                   'Yamaha Fz S V 2.0'] %} 
+                  <option value={{x.replace(" ", "_")}}>{{x}}</option>
+                  {% endfor %}
+                </select>
+                
+                
+                <select name="yr" id="years" required="required">
+                <option selected>Select year</option>
+                 {% for x in ['2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011',
+                 '2012', '2013', '2014', '2015', '2016',
+                 '2017', '2018'] %} 
+                <option value={{x}}>{{x}}</option>
+                {% endfor %}
+                </select>
+                
+            
+                <input type="text" id="avgp" name="avg_price" required="required" placeholder="Enter average selling price (USD) [Do not include dollar sign ($) or commas (,)]"><br>
+           
+           
+                <input type="text" id="miles" name="milage" required="required" placeholder="Enter vehicle milage">
+                
+                
+                <select name="fuel" id="fuel_types" required="required">
+                <option selected>Select fuel type</option>
+                 {% for x in ['CNG', 'Diesel', 'Petrol'] %} 
+                 <option value={{x}}>{{x}}</option>
+                 {% endfor %}
+                </select>
+                
+                
+                <select name="seller" id="seller_types" required="required">
+                <option selected>Select seller</option>
+                 {% for x in ['Dealer', 'Individual'] %} 
+                 <option value={{x}}>{{x}}</option>
+                 {% endfor %}
+                </select>
+                
+
+                <select name="trans" id="transmissions" required="required">
+                <option selected>Select transmission type</option>
+                 {% for x in ['Automatic', 'Manual'] %} 
+                <option value={{x}}>{{x}}</option>
+                {% endfor %}
+                </select>
+                
+                <select name="owner" id="ownr" required="required">
+                <option selected>Select number of previous owners</option>
+                 {% for x in ['0', '1', '3'] %} 
+                 <option value={{x}}>{{x}}</option>
+                 {% endfor %}
+                </select>
+        <br>
+        <br>
+        <br>
+        <br>
+        <input type="submit" class="my-cta-button" value="Get Recommendation">
+        </form> 
+
+
+</div>
+        
+        		<!-- Footer -->
+       <div class='footer'>
+           <div class="contact">
+               <a target="_blank" href="https://github.com/MichaelBryantDS/vehicle-price-rec"><i class="fab fa-github fa-lg contact-icon"></i></a>
+               <a target="_blank" href="https://www.linkedin.com/in/MichaelBryantDS"><i class="fab fa-linkedin fa-lg contact-icon"></i></a>
+               <a target="_blank" href="mailto:MichaelBryantDS@gmail.com"><i class="far fa-envelope fa-lg contact-icon"></i></a>
+           </div>
+           <p class='footer-description'>2021 &copy; Michael Bryant</p></p>
+       </div>
+        
+    </body>
+ </html>
